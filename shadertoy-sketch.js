@@ -11,17 +11,28 @@ function preload() {
   mandelbrot = loadShader("assets/blank.vert", "assets/mandelbrot.frag");
 }
 
+function setActive(value) {
+  active = {
+    mandelbrot,
+    snow,
+    starnest,
+  }[value];
+}
+
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight, WEBGL);
-  active = mandelbrot;
+
   noStroke();
 
-  document.querySelector("select").addEventListener("change", (event) => {
-    active = {
-      mandelbrot,
-      snow,
-      starnest,
-    }[/** @type HTMLSelectElement */ (event.target).value];
+  const select = document.querySelector("select");
+  setActive(select.value);
+  select.addEventListener("change", (event) => {
+    setActive(/** @type HTMLSelectElement */ (event.target).value);
+    // active = {
+    //   mandelbrot,
+    //   snow,
+    //   starnest,
+    // }[/** @type HTMLSelectElement */ (event.target).value];
   });
 }
 
