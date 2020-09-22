@@ -1,6 +1,7 @@
 let starnest;
 let snow;
 let mandelbrot;
+let sine;
 let active;
 
 function preload() {
@@ -9,6 +10,7 @@ function preload() {
   starnest = loadShader("assets/blank.vert", "assets/starnest.frag");
   snow = loadShader("assets/blank.vert", "assets/snow.frag");
   mandelbrot = loadShader("assets/blank.vert", "assets/mandelbrot.frag");
+  sine = loadShader("assets/blank.vert", "assets/sine.frag");
 }
 
 function setActive(value) {
@@ -16,6 +18,7 @@ function setActive(value) {
     mandelbrot,
     snow,
     starnest,
+    sine,
   }[value];
 }
 
@@ -28,11 +31,6 @@ function setup() {
   setActive(select.value);
   select.addEventListener("change", (event) => {
     setActive(/** @type HTMLSelectElement */ (event.target).value);
-    // active = {
-    //   mandelbrot,
-    //   snow,
-    //   starnest,
-    // }[/** @type HTMLSelectElement */ (event.target).value];
   });
 }
 
